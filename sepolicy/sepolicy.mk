@@ -4,7 +4,7 @@
 #
 
 BOARD_SEPOLICY_DIRS += \
-    vendor/aod/sepolicy
+    vendor/tls/sepolicy
 
 BOARD_SEPOLICY_UNION += \
     file.te \

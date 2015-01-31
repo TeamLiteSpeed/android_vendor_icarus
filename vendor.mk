@@ -25,28 +25,28 @@ PRODUCT_PROPERTY_OVERRIDES += persist.sys.dun.override=0
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/aod/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
-    vendor/aod/prebuilt/common/bin/backuptool.functions:system/bin/backuptool.functions \
-    vendor/aod/prebuilt/common/bin/50-base.sh:system/addon.d/50-base.sh \
-    vendor/aod/prebuilt/common/bin/blacklist:system/addon.d/blacklist
+    vendor/tls/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
+    vendor/tls/prebuilt/common/bin/backuptool.functions:system/bin/backuptool.functions \
+    vendor/tls/prebuilt/common/bin/50-base.sh:system/addon.d/50-base.sh \
+    vendor/tls/prebuilt/common/bin/blacklist:system/addon.d/blacklist
 
 # init.d support
 PRODUCT_COPY_FILES += \
-    vendor/aod/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
-    vendor/aod/prebuilt/common/bin/sysinit:system/bin/sysinit
+    vendor/tls/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+    vendor/tls/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 # userinit support
 PRODUCT_COPY_FILES += \
-    vendor/aod/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+    vendor/tls/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 
 # vendor-specific init file
 PRODUCT_COPY_FILES += \
-    vendor/aod/prebuilt/common/etc/init.local.rc:root/init.vendor.rc
+    vendor/tls/prebuilt/common/etc/init.local.rc:root/init.vendor.rc
 
 # Bring in camera effects
 PRODUCT_COPY_FILES +=  \
-    vendor/aod/prebuilt/common/media/LMspeed_508.emd:system/vendor/media/LMspeed_508.emd \
-    vendor/aod/prebuilt/common/media/PFFprec_600.emd:system/vendor/media/PFFprec_600.emd
+    vendor/tls/prebuilt/common/media/LMspeed_508.emd:system/vendor/media/LMspeed_508.emd \
+    vendor/tls/prebuilt/common/media/PFFprec_600.emd:system/vendor/media/PFFprec_600.emd
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -77,20 +77,34 @@ PRODUCT_PACKAGES += \
 
 # World APN list
 PRODUCT_COPY_FILES += \
-    vendor/aod/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
+    vendor/tls/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
 
 # World SPN overrides list
 PRODUCT_COPY_FILES += \
-    vendor/aod/prebuilt/common/etc/spn-conf.xml:system/etc/spn-conf.xml
+    vendor/tls/prebuilt/common/etc/spn-conf.xml:system/etc/spn-conf.xml
 
 # Selective SPN list for operator number who has the problem.
 PRODUCT_COPY_FILES += \
-    vendor/aod/prebuilt/common/etc/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
+    vendor/tls/prebuilt/common/etc/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
 
 PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/aod/overlay/common \
-    vendor/aod/overlay/dictionaries
+    vendor/tls/overlay/common \
+    vendor/tls/overlay/dictionaries
 
+# Version information used on all builds
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_DISPLAY_ID=LRX21M BUILD_ID=LRX22G BUILD_VERSION_TAGS=release-keys BUILD_UTC_DATE=0
+
+# Versioning System
+PRODUCT_VERSION_MAJOR = 1
+PRODUCT_VERSION_MINOR = 0
+PRODUCT_VERSION_MAINTENANCE = Beta-1.0
+
+ROM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(PRODUCT_VERSION_MAINTENANCE)-$(TLS_BUILD)-$(shell date -u +%Y%m%d)
+
+PRODUCT_PROPERTY_OVERRIDES += \
+  ro.tls.version=$(ROM_VERSION) \
+  eos.ota.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(shell date -u +%Y%m%d) \
+  ro.modversion=$(ROM_VERSION)
 
 # by default, do not update the recovery with system updates
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
