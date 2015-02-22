@@ -28,6 +28,9 @@ ifeq ($(PRODUCT_PREBUILT_WEBVIEWCHROMIUM),yes)
 -include prebuilts/chromium/$(TARGET_DEVICE)/chromium_prebuilt.mk
 endif
 
+#boot animation
+PRODUCT_BOOTANIMATION := vendor/icarus/prebuilt/common/bootanimation/bootanimation.zip
+
 # Backup Tool
 PRODUCT_COPY_FILES += \
     vendor/icarus/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
