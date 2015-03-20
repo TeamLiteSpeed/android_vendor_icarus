@@ -1,0 +1,6 @@
+add_lunch_combo icarus_xt907-userdebug
+add_lunch_combo icarus_xt925-userdebug
+add_lunch_combo icarus_xt926-userdebug
+add_lunch_combo icarus_vs980-userdebug
+add_lunch_combo icarus_jfltevzw-userdebug
+add_lunch_combo icarus_shamu-userdebug
